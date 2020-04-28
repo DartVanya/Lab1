@@ -15,10 +15,10 @@ public class Button extends itemState {
 	}
 	public void swith() {
 		Item.turned = !Item.turned;
-		if(Item.button == "Î")
-			Item.button = "î";
+		if(Item.button == "Ðž")
+			Item.button = "Ð¾";
 		else
-			Item.button = "Î";
+			Item.button = "Ðž";
 	}
  
 }

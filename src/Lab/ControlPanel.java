@@ -4,36 +4,36 @@ import java.util.Random;
 import java.util.Vector;
 
 public class ControlPanel {
-    String colors[] = {"к", "с", "з", "г", "ф", "о", "ж"};
-    item items[][];
-    int N, M;
-    
-    Vector<Point> Lamp_arr = new Vector<Point>();
-    Vector<Point> Butt_arr = new Vector<Point>();
-    Vector<Vector<Integer>> but_to_lamp;
 
-    // Конструктор панели
+    private int N, M;
+    private String colors[] = {"Рє", "СЃ", "Р·", "Рі", "С„", "Рѕ", "Р¶"};
+    private item items[][];
+    private Vector<Point> Lamp_arr = new Vector<Point>();
+    private Vector<Point> Butt_arr = new Vector<Point>();
+    private Vector<Vector<Integer>> but_to_lamp;
+
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїР°РЅРµР»Рё
     public ControlPanel (int n, int m) {
     	N = n; M = m;
         int pos;
         items = new item[N][M];
         
-        // Генерируем панель, случайно кнопка или лампа
+        // Р“РµРЅРµСЂРёСЂСѓРµРј РїР°РЅРµР»СЊ, СЂР°Р·РјРµС‰РµРЅРёРµ РєРЅРѕРїРѕРє Рё Р»Р°РјРї СЃР»СѓС‡Р°Р№РЅРѕ
         Random rand = new Random();
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
                 pos = rand.nextInt(2);
                 if (pos == 1) {
                 	pos = rand.nextInt(colors.length);
-                	items[i][j] = new item(false, colors[pos]);
+                	items[i][j] = new item(colors[pos]);
                 }
                 else {
-                	items[i][j] = new item(true);
+                	items[i][j] = new item();
                 }
             }
         }
         
-        // Собираем кнопки и лампы в вектор
+        // РЎРѕР±РёСЂР°РµРј РєРЅРѕРїРєРё Рё Р»Р°РјРїС‹ РІ РІРµРєС‚РѕСЂ
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
             	if (items[i][j].get_type())
@@ -43,25 +43,24 @@ public class ControlPanel {
             }
         }
         
-        // Временные переменные для упрощения кода
+        // Р’СЂРµРјРµРЅРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ РґР»СЏ СѓРїСЂРѕС‰РµРЅРёСЏ РєРѕРґР°
         int l_cnt = Lamp_arr.size();
         int b_cnt = Butt_arr.size();
         
-        but_to_lamp = new Vector<Vector<Integer>>(l_cnt);
+       but_to_lamp = new Vector<Vector<Integer>>(l_cnt);
         
-        // Привязываем случайное число ламп к каждой кнопке, порядок случаен
+        // РџСЂРёРІСЏР·С‹РІР°РµРј СЃР»СѓС‡Р°Р№РЅРѕРµ С‡РёСЃР»Рѕ Р»Р°РјРї Рє РєР°Р¶РґРѕР№ РєРЅРѕРїРєРµ, РїРѕСЂСЏРґРѕРє СЃР»СѓС‡Р°РµРЅ
         for (int i = 0; i < b_cnt; i++) {
-        	
         	but_to_lamp.add(i, new Vector<Integer>());
-        	pos = rand.nextInt(l_cnt); // случайное число ламп
-            for (int r = 0; r < pos; r++) { // случайный порядок ламп
+        	pos = rand.nextInt(l_cnt); // СЃР»СѓС‡Р°Р№РЅРѕРµ С‡РёСЃР»Рѕ Р»Р°РјРї
+            for (int r = 0; r < pos; r++) { // СЃР»СѓС‡Р°Р№РЅС‹Р№ РїРѕСЂСЏРґРѕРє Р»Р°РјРї
             	but_to_lamp.get(i).add(rand.nextInt(l_cnt));
             }
         }
 
     }
     
-    // Вывод панели на экран
+    // Р’С‹РІРѕРґ РїР°РЅРµР»Рё РЅР° СЌРєСЂР°РЅ
     void print() {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
@@ -74,7 +73,7 @@ public class ControlPanel {
         System.out.println();
     }
     
-    // Получение индекса из массива по координатам 
+    // РџРѕР»СѓС‡РµРЅРёРµ РёРЅРґРµРєСЃР° РёР· РјР°СЃСЃРёРІР° РїРѕ РєРѕРѕСЂРґРёРЅР°С‚Р°Рј 
     int get_index(Vector<Point> vec, int x, int y) {
     	  for (int i = 0; i < vec.size(); i++) {
     		  Point temp = vec.get(i);
@@ -84,20 +83,21 @@ public class ControlPanel {
     	  return -1;
     }
     
-    // Метод нажатия кнопки
+    // РњРµС‚РѕРґ РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё
     void PressButton(int X, int Y) {
-    	// Получаем индекс кнопки по координатам
+    	// РџРѕР»СѓС‡Р°РµРј РёРЅРґРµРєСЃ РєРЅРѕРїРєРё РїРѕ РєРѕРѕСЂРґРёРЅР°С‚Р°Рј
     	int res = this.get_index(Butt_arr, X, Y);
     	if(res == -1) {
-    		 System.out.println("Ошибка! Это не кнопка! Введите заново!");
+    		 System.out.println("РћС€РёР±РєР°! Р­С‚Рѕ РЅРµ РєРЅРѕРїРєР°! Р’РІРµРґРёС‚Рµ Р·Р°РЅРѕРІРѕ!");
     		 return;
     	}
-    	
-    	int index;
-    	for (int i = 0; i < but_to_lamp.get(res).size(); i++) { // Перебираем индексы ламп, привязянные
-    		// к этой кнопке
-    		index = but_to_lamp.get(res).get(i); // Поочереди получаем индексы ламп из массива
-    		items[Lamp_arr.get(index).x][Lamp_arr.get(index).y].swith(); // Включаем
+
+        int index;
+        Point temp;
+    	for (int i = 0; i < but_to_lamp.get(res).size(); i++) { // РџРµСЂРµР±РёСЂР°РµРј РёРЅРґРµРєСЃС‹ Р»Р°РјРї, РїСЂРёРІСЏР·Р°РЅРЅРѕР№ Рє СЌС‚РѕР№ РєРЅРѕРїРєРµ
+    		index = but_to_lamp.get(res).get(i); // РџРѕРѕС‡РµСЂРµРґРё РїРѕР»СѓС‡Р°РµРј РёРЅРґРµРєСЃС‹ Р»Р°РјРї РёР· РјР°СЃСЃРёРІР°
+            temp = new Point(Lamp_arr.get(index).x, Lamp_arr.get(index).y); // Р’СЂРµРјРµРЅРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ РґР»СЏ РёРЅРґРµРєСЃРѕРІ Рё РєРѕРѕСЂРґРёРЅР°С‚
+            items[temp.x][temp.y].swith(); // Р’РєР»СЋС‡Р°РµРј
     	}
     	items[X][Y].swith();
     		

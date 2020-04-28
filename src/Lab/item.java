@@ -1,47 +1,44 @@
 package Lab;
 
-// Класс элемента в контейнере панели
+// РљР»Р°СЃСЃ СЌР»РµРјРµРЅС‚Р° РІ РєРѕРЅС‚РµР№РЅРµСЂРµ РїР°РЅРµР»Рё
 public class item {
-	
+
 	private itemState state;
-	
-	String color;
-	String button = "О";
-	String lamp = "Л_";
-	boolean turned;
-	
+	protected String color;
+	protected String button = "Рћ";
+	protected String lamp = "Р›_";
+	protected boolean turned = false;
 	
     public void changeState(itemState state) {
         this.state = state;
-
     }
     public itemState getState() {
-        return state;
+    	return state;
     }
 
-	
-	// Конструктор для лампы
-	item(boolean t, String c) {
+	// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґР»СЏ Р»Р°РјРїС‹
+	item(String c) {
 		this.changeState(new Lamp(this));
 		color = c;
-		turned = false;
 	}
-	// Для кнопки
-	item(boolean t) {
-		turned = false;
-		this.changeState(new Button(this));
+
+	// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґР»СЏ РєРЅРѕРїРєРё
+	item() {
+    	this.changeState(new Button(this));
 	}
-	
-	// Печать элемента
+
+	// РџРµС‡Р°С‚СЊ СЌР»РµРјРµРЅС‚Р°
 	void print(){
-		this.state.print();
+    	this.state.print();
 	}
-	// Получение типа, true = кнопка, false = лампа
+
+	// РџРѕР»СѓС‡РµРЅРёРµ С‚РёРїР°, true = РєРЅРѕРїРєР°, false = Р»Р°РјРїР°
 	boolean get_type() {
-		return this.state.get_type();
+    	return this.state.get_type();
 	}
-	// Переключение лампы
+
+	// РџРµСЂРµРєР»СЋС‡РµРЅРёРµ Р»Р°РјРїС‹
 	void swith() {
-		this.state.swith();
+    	this.state.swith();
 	}
 }

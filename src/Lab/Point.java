@@ -1,8 +1,10 @@
 package Lab;
 
-// Служебный класс координаты
+// вЂ”Р»СѓР¶РµР±РЅС‹Р№ РєР»Р°СЃСЃ РєРѕРѕСЂРґРёРЅР°С‚С‹
 public class Point {
+
 	int x, y;
+
 	Point(int xx, int yy) {
 		x = xx; y = yy;
 	}
