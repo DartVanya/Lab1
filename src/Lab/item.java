@@ -6,7 +6,7 @@ public class item {
 	private itemState state;
 	protected String color;
 	protected String button = "О";
-	protected String lamp = "Л_";
+	protected String lamp = "Л";
 	protected boolean turned = false;
 	
     public void changeState(itemState state) {

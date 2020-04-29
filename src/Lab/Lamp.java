@@ -9,7 +9,7 @@ public class Lamp extends itemState {
 	@Override
 	public void print() {
 		if(Item.turned)
-			System.out.print(Item.lamp + Item.color);
+			System.out.print(Item.lamp + '_' + Item.color);
 		else
 			System.out.print(Item.lamp);
 	}
