@@ -2,7 +2,7 @@ package Lab;
 
 import java.util.Random;
 import java.util.Vector;
-
+// Класс, работающий с панелью, генерирует, печатает панель, осуществляет нажатие кнопки
 public class ControlPanel {
 
     private int N, M;
@@ -74,7 +74,7 @@ public class ControlPanel {
     }
     
     // Получение индекса из массива по координатам 
-    int get_index(Vector<Point> vec, int x, int y) {
+    private int get_index(Vector<Point> vec, int x, int y) {
     	  for (int i = 0; i < vec.size(); i++) {
     		  Point temp = vec.get(i);
     		  if(temp.x == x && temp.y == y)

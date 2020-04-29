@@ -1,6 +1,6 @@
 package Lab;
 
-// —лужебный класс координаты
+// Служебный класс координаты
 public class Point {
 
 	int x, y;

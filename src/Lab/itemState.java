@@ -1,5 +1,5 @@
 package Lab;
-
+// Интерфейс состояний класса item
 public abstract class itemState {
 
 	protected item Item;

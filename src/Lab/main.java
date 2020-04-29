@@ -1,9 +1,6 @@
 package Lab;
 
-import java.util.Random;
 import java.util.Scanner;
-import java.util.Vector;
-import java.lang.Math.*;
 
 public class main {
 
