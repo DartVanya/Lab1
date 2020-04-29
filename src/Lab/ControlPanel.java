@@ -1,6 +1,6 @@
 package Lab;
-
 import java.util.Random;
+
 import java.util.Vector;
 // Класс, работающий с панелью, генерирует, печатает панель, осуществляет нажатие кнопки
 public class ControlPanel {
