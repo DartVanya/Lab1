@@ -1,6 +1,6 @@
 package Lab;
 
-// Реализация состояний item для кнопки
+// Реализация состояния item для кнопки
 public class Button extends itemState {
 
 	Button(item Item) {

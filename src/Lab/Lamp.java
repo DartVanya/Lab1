@@ -1,6 +1,6 @@
 package Lab;
 
-//Реализация состояний item для лампы
+//Реализация состояния item для лампы
 public class Lamp extends itemState {
 
 	Lamp(item Item) {
